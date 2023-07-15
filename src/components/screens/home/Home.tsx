@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import { FC, useState } from 'react'
+import styles from './home.module.scss'
 
-function Home() {
-  const [count, setCount] = useState(0)
+const Home: FC = () => {
 
   return (
-    <>
-    </>
+    <div className={styles.home}>
+				
+		</div>
   )
 }
 
