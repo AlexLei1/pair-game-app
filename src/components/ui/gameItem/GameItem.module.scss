@@ -1,0 +1,18 @@
+.gameItem {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 25%;
+	height: 25%;
+	background-color: black;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+	transition: transform .3s ease-out;
+	transform: rotateY(180deg);
+
+	> span {
+		pointer-events: none;
+		transition: .2s ease-in-out;
+	}
+}

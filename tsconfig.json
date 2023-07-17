@@ -39,7 +39,7 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "./app/",
+		"baseUrl": "./src/",
 		"paths": {
 			"@/components/*": ["components/*"],
 			"@/ui/*": ["components/ui/*"],
@@ -53,6 +53,6 @@
 			"@/store/*": ["store/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "app/hooks/useScrollDirection.ts", "app/hooks/useScrollDirection.ts", "app/hooks/useWindowSize.ts"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "app/hooks/useScrollDirection.ts", "app/hooks/useScrollDirection.ts", "app/hooks/useWindowSize.ts", "src/components/screens/game/game.data.js"],
 	"exclude": ["node_modules"]
 }
