@@ -1,13 +1,18 @@
-import {FC} from 'react'
-
+import {FC, useRef} from 'react'
+import styles from './GameItem.module.scss'
+import cn from 'classnames'
 interface IGameItem {
-	value: string,
-	id: string
+	icon: string,
+	id: number,
+	y: number,
+	x: number
 }
 
-const GameItem:FC<IGameItem> = (value, id) => {
+const GameItem:FC<IGameItem> = ({icon, id, y, x}) => {
+	const ref = useRef();
+
 	return (
-		<div className={gameItem}><span></span></div>
+		<div className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0)`}}  data-matrix-id={id}><span className={`${icon}`}></span></div>
 	)
 }
 

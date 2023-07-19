@@ -5,11 +5,15 @@
 	width: 25%;
 	height: 25%;
 	background-color: black;
-	color: #fff;
-	font-size: 16px;
+	// color: #fff;
+	font-size: 40px;
 	cursor: pointer;
 	transition: transform .3s ease-out;
-	transform: rotateY(180deg);
+	// transform: rotateY(0deg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 
 	> span {
 		pointer-events: none;

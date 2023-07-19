@@ -1,6 +1,98 @@
-export const items = [
+export const gameData = [
 	{
 		id: 1,
-		icon: 
+		icon: '_icon-hand',
+		y: 0,
+		x: 0,
+	},
+	{
+		id: 2,
+		icon: '_icon-hand',
+		y: 0,
+		x: 1,
+	}, 
+	{
+		id: 3,
+		icon: '_icon-face',
+		y: 0,
+		x: 2,
+	}, 
+	{
+		id: 4,
+		icon: '_icon-face',
+		y: 0,
+		x: 3,
+	}, 
+	{
+		id: 5,
+		icon: '_icon-ghost',
+		y: 1,
+		x: 0,
+	}, 
+	{
+		id: 6,
+		icon: '_icon-ghost',
+		y: 1,
+		x: 1,
+	}, 
+	{
+		id: 7,
+		icon: '_icon-mask',
+		y: 1,
+		x: 2,
+	}, 
+	{
+		id: 8,
+		icon: '_icon-mask',
+		y: 1,
+		x: 3,
+	}, 
+	{
+		id: 9,
+		icon: '_icon-heart',
+		y: 2,
+		x: 0,
+	}, 
+	{
+		id: 10,
+		icon: '_icon-heart',
+		y: 2,
+		x: 1,
+	}, 
+	{
+		id: 11,
+		icon: '_icon-radiation',
+		y: 2,
+		x: 2,
+	}, 
+	{
+		id: 12,
+		icon: '_icon-radiation',
+		y: 2,
+		x: 3,
+	}, 
+	{
+		id: 13,
+		icon: '_icon-shield',
+		y: 3,
+		x: 0,
+	}, 
+	{
+		id: 14,
+		icon: '_icon-shield',
+		y: 3,
+		x: 1,
+	}, 
+	{
+		id: 15,
+		icon: '_icon-minimize',
+		y: 3,
+		x: 2,
+	}, 
+	{
+		id: 16,
+		icon: '_icon-minimize',
+		y: 3,
+		x: 3,
 	}, 
 ]
