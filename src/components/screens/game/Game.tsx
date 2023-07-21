@@ -7,14 +7,13 @@ import {gameData} from './game.data.js'
 export interface IGameData extends Array<IGameItem> {}
 
 const Game: FC = () => {
-	const [counter, setCounter] = useState(gameData);
+	const [counter, setCounter] = useState<IGameData>(gameData);
 
 	//? формирует матрицу из массива
 	const getMatrix = (data:IGameData) => {
 		const matrix = [[], [], [], []]
 		let y = 0
 		let x = 0
-		console.log(data)
 		for(let i in data) {
 			if (x >= 4) {
 				y++
@@ -23,7 +22,6 @@ const Game: FC = () => {
 			matrix[y][x] = data[i]
 			x++
 		}
-		console.log(matrix)
 		return matrix
 	}
 
@@ -36,52 +34,37 @@ const Game: FC = () => {
 				matrix[y][x].y = y
 			}
 		}
-		
-		return matrix
+		return matrix.flat()
 	}
 
 	//? рандомно перемешивает массив
-	// const shuffleArray = (arr) => {
-	// 	return arr 
-	// 		.map(value => ({value, sort: Math.random()}))
-	// 		.sort((a, b) => a.sort - b.sort)
-	// 		.map(({value}) => value)
-	// }
+	const shuffleArray = (arr) => {
+		return arr 
+			.map(value => ({value, sort: Math.random()}))
+			.sort((a, b) => a.sort - b.sort)
+			.map(({value}) => value)
+	}
 
-	//? рандомно перемешивает массив
-	// const shuffleArray = (array) => {
-	// 	let currentIndex = array.length,  randomIndex;
-	// 	// While there remain elements to shuffle.
-	// 	while (currentIndex != 0) {
-	// 		// Pick a remaining element.
-	// 		randomIndex = Math.floor(Math.random() * currentIndex);
-	// 		currentIndex--;
-	// 		// And swap it with the current element.
-	// 		[array[currentIndex], array[randomIndex]] = [
-	// 			array[randomIndex], array[currentIndex]];
-	// 	}
-	// 	return array;
-	// } 
 
 	//? процедура перемешивания массива 
-	// const mixing = () => {
-	// 	const shuffledArray = shuffleArray(counter.map(item => item.id))
-	// 	let matrix = getMatrix(shuffledArray);
-	// 	setPositionItems(matrix);
-	// }
+	const mixing = () => {
+		const shuffledArray = shuffleArray(counter)
+		let matrix = getMatrix(shuffledArray);
+		setCounter(setPositionItems(matrix));
+	}
 	
 	
 	useEffect(() => {
 		setCounter(setPositionItems(getMatrix(counter)))
 	}, [])
 
-
+	console.log(counter)
 	return (
 		<>
 			<div className={styles.cube}>
-				{counter.map(({id, icon, y, x}) => <div className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0)`}}  data-matrix-id={id}><span className={`${icon}`}></span></div>)}
+				{counter.map(({id, icon, y, x}) => <div key={id} className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0)`}}  data-matrix-id={id}><span className={`${icon}`}></span></div>)}
 			</div>
-			<button>mixing</button>
+			<button onClick={() => mixing()}>mixing</button>
 		</>
 	)
 }
