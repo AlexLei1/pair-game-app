@@ -1,7 +1,7 @@
 import {FC, useRef} from 'react'
 import styles from './GameItem.module.scss'
 import cn from 'classnames'
-interface IGameItem {
+export interface IGameItem {
 	icon: string,
 	id: number,
 	y: number,
