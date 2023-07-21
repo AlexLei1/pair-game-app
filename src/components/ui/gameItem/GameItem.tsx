@@ -9,7 +9,6 @@ export interface IGameItem {
 }
 
 const GameItem:FC<IGameItem> = ({icon, id, y, x}) => {
-	const ref = useRef();
 
 	return (
 		<div className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0)`}}  data-matrix-id={id}><span className={`${icon}`}></span></div>
