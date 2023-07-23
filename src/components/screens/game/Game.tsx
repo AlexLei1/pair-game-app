@@ -2,15 +2,22 @@ import GameItem, { IGameItem } from '@/components/ui/gameItem/GameItem'
 import { useGame } from '@/hooks/useGame'
 import {FC, useEffect, useRef, useState} from 'react'
 import styles from './Game.module.scss'
+import { gameData } from '@/components/screens/game/game.data';
 
 
 const Game: FC = () => {
-	const {counter, mixing} = useGame()
+	
+	const itemsRef = useRef([])
+	const {mixing, game, isGame, hideItem} = useGame(itemsRef.current)
+	useEffect(() => {
+		itemsRef.current = itemsRef.current.slice(0, gameData.length);
+ }, []);
+
 
 	return (
 		<>
 			<div className={styles.cube}>
-				{counter.map(({id, icon, y, x}) => <div key={id} className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${180}deg)`}}  data-matrix-id={id}><span className={`${icon}`} style={{opacity: `0`}}></span></div>)}
+				{gameData.map(({id, icon, y, x, opacity, rotate}, i) => <div key={i} ref={el => itemsRef.current[i] = el} onClick={() => hideItem(`${i}`)} className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}} ><span className={`${icon}`} style={{opacity: `${opacity}`}}></span></div>)}
 			</div>
 			<button onClick={() => mixing()}>mixing</button>
 		</>
@@ -18,7 +25,3 @@ const Game: FC = () => {
 }
 
 export default Game
-
-// 1 - рассавить элементы + добавить возможность перемешивать элемнты 
-// 2 - 
-// 3 - 

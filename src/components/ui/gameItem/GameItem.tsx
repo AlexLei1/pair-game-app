@@ -3,9 +3,10 @@ import styles from './GameItem.module.scss'
 import cn from 'classnames'
 export interface IGameItem {
 	icon: string,
-	id: number,
 	y: number,
 	x: number
+	opacity: number,
+	rotate: number
 }
 
 const GameItem:FC<IGameItem> = ({icon, id, y, x}) => {
