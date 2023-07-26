@@ -4,9 +4,10 @@ import { IGameItem } from '@/components/ui/gameItem/GameItem';
 export interface IGameData extends Array<IGameItem> {}
 
 export const useGame = (arrItems) => {
-	const [isGame, setIsGame] = useState(false)
+	const [gameplay, setGameplay] = useState([])
+	const [arrIdItem, setArrIdItem] = useState([])
+	const [isPosition, setIsProsition] = useState(true)
 
-	console.log(arrItems)
 	//? формирует матрицу из массива
 	const getMatrix = (arr) => {
 		const matrix = [[], [], [], []]
@@ -26,13 +27,13 @@ export const useGame = (arrItems) => {
 		return matrix
 	}
 
-
 	//? задает координаты X & Y ариентируясь на порядок в матрице
 	const setPositionItems = (matrix) => { 
 		for(let y = 0; y < matrix.length; y++) {
 			for(let x = 0; x < matrix[y].length; x++) {
 
 				matrix[y][x].style.transform = `translate3D(${x * 100}%, ${y * 100}%,  0)`;
+				matrix[y][x].disabled = true
 			}
 		}
 		return matrix.flat()
@@ -46,13 +47,24 @@ export const useGame = (arrItems) => {
 			.map(({value}) => value)
 	}
 
-	const hideItem = (id) => {
+
+
+	const showItem = (index: string, id:number) => {
 		for(let i in arrItems) {
-			if (i === id) {
-				console.log(arrItems[i].style.opacity)
-				arrItems[i].style.opacity = 0
-				arrItems[i].style.transform = `rotateY(${180}deg) scaleX(-1)`
+			if (i === index) {
+				arrItems[i].children[0].style.opacity = 1
+				arrItems[i].disabled = true
+
+				setGameplay((arr) => [...arr, id])
+				setArrIdItem((arr) => [...arr, id])
 			} 
+		}
+	}
+
+	const hideItems = () => {
+		for(let i in arrItems) {
+			arrItems[i].children[0].style.opacity = 0
+			arrItems[i].disabled = false
 		}
 	}
 
@@ -61,22 +73,24 @@ export const useGame = (arrItems) => {
 		setPositionItems(getMatrix(shuffleArray(arrItems)))
 	}
 
-	//1 - перемешиваем элементы
-	//2 - через 5 секунд скрываем элемнты и (visibal)
-	//3 - даем возможность кликать на элементы
-	//4 - при клике на элемент он открывается (visibal) & происходит проверка 
-	const game = () => {
-		mixing()
-
-
-		// setTimeout(() =>  [2000])
-	}
-
 	useEffect(() => {
-		setPositionItems(getMatrix(arrItems))
-	}, [])
+		if((arrIdItem.length === 0) && isPosition) {
+			setIsProsition(false)
+			// setTimeout(() => mixing(), 1000)
+			setTimeout(() => hideItems(), 1000)
+		} else if ((arrIdItem.length !== 0) && gameplay.length % 2 === 0) {
+
+			if (gamepaly[0] === gameplay[1]) {
+				console.log(true)
+				setGameplay([])
+			} else {
+				console.log(false)
+				setGameplay([])
+			}
+		}
+	}, [gameplay])
 
 
-	return {mixing, game, isGame, hideItem}
+	return {mixing, game, showItem}
 }
 
