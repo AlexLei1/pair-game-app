@@ -8,7 +8,7 @@ import { gameData } from '@/components/screens/game/game.data';
 const Game: FC = () => {
 	
 	const itemsRef = useRef([])
-	const {mixing, game, showItem} = useGame(itemsRef.current)
+	const {mixing, showItem} = useGame(itemsRef.current)
 
 	useEffect(() => {
 		itemsRef.current = itemsRef.current.slice(0, gameData.length);

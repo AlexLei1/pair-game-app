@@ -6,7 +6,7 @@ export interface IGameData extends Array<IGameItem> {}
 export const useGame = (arrItems) => {
 	const [gameplay, setGameplay] = useState([])
 	const [arrIdItem, setArrIdItem] = useState([])
-	const [isPosition, setIsProsition] = useState(true)
+	const [isPosition, setIsPosition] = useState(true)
 
 	//? формирует матрицу из массива
 	const getMatrix = (arr) => {
@@ -73,24 +73,33 @@ export const useGame = (arrItems) => {
 		setPositionItems(getMatrix(shuffleArray(arrItems)))
 	}
 
+	// const gameRestart = () => {
+		
+	// }
+
 	useEffect(() => {
 		if((arrIdItem.length === 0) && isPosition) {
-			setIsProsition(false)
+			setIsPosition(false)
 			// setTimeout(() => mixing(), 1000)
 			setTimeout(() => hideItems(), 1000)
 		} else if ((arrIdItem.length !== 0) && gameplay.length % 2 === 0) {
 
-			if (gamepaly[0] === gameplay[1]) {
+			if (gameplay[0] === gameplay[1]) {
 				console.log(true)
-				setGameplay([])
+				setArrIdItem([])
 			} else {
 				console.log(false)
-				setGameplay([])
+				setArrIdItem([])
 			}
 		}
+		if (gameplay.length === 16){
+			console.log('выйграли')
+			setGameplay([])
+		}
+		console.log(gameplay)
 	}, [gameplay])
 
 
-	return {mixing, game, showItem}
+	return {mixing, showItem}
 }
 
