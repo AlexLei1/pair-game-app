@@ -3,7 +3,7 @@ import { IGameItem } from '@/components/ui/gameItem/GameItem';
 
 export interface IGameData extends Array<IGameItem> {}
 
-export const useGame = (arrItems) => {
+export const useGame = (arrItems: any) => {
 	const [gameplay, setGameplay] = useState([])
 	const [arrIdItem, setArrIdItem] = useState([])
 	const [isPosition, setIsPosition] = useState(true)
@@ -31,9 +31,7 @@ export const useGame = (arrItems) => {
 	const setPositionItems = (matrix) => { 
 		for(let y = 0; y < matrix.length; y++) {
 			for(let x = 0; x < matrix[y].length; x++) {
-
 				matrix[y][x].style.transform = `translate3D(${x * 100}%, ${y * 100}%,  0)`;
-				matrix[y][x].disabled = true
 			}
 		}
 		return matrix.flat()
@@ -48,7 +46,7 @@ export const useGame = (arrItems) => {
 	}
 
 
-
+	//? показать элемент
 	const showItem = (index: string, id:number) => {
 		for(let i in arrItems) {
 			if (i === index) {
@@ -60,7 +58,7 @@ export const useGame = (arrItems) => {
 			} 
 		}
 	}
-
+	//? скрывает все элемнты и дает возможность кликать
 	const hideItems = () => {
 		for(let i in arrItems) {
 			arrItems[i].children[0].style.opacity = 0
@@ -68,7 +66,14 @@ export const useGame = (arrItems) => {
 		}
 	}
 
-	//? процедура перемешивания массива 
+	//? блокирует все элемнты
+	const disabledItems = () => {
+		for(let i in arrItems) {
+			arrItems[i].disabled = true
+		}
+	}
+
+	//? процедура перемешивания элемнтов игры 
 	const mixing = () => {
 		setPositionItems(getMatrix(shuffleArray(arrItems)))
 	}
@@ -79,16 +84,21 @@ export const useGame = (arrItems) => {
 
 	useEffect(() => {
 		if((arrIdItem.length === 0) && isPosition) {
+			disabledItems()
 			setIsPosition(false)
 			// setTimeout(() => mixing(), 1000)
-			setTimeout(() => hideItems(), 1000)
+			setTimeout(() => hideItems(), 2000)
 		} else if ((arrIdItem.length !== 0) && gameplay.length % 2 === 0) {
 
-			if (gameplay[0] === gameplay[1]) {
+			if (arrIdItem[0] === arrIdItem[1]) {
 				console.log(true)
+
+
 				setArrIdItem([])
 			} else {
 				console.log(false)
+
+
 				setArrIdItem([])
 			}
 		}
@@ -96,10 +106,10 @@ export const useGame = (arrItems) => {
 			console.log('выйграли')
 			setGameplay([])
 		}
-		console.log(gameplay)
+
 	}, [gameplay])
 
 
-	return {mixing, showItem}
+	return {mixing, showItem, gameplay}
 }
 

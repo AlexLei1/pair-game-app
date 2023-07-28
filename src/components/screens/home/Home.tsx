@@ -1,16 +1,22 @@
 import { FC, useState } from 'react'
 import styles from './home.module.scss'
 import Game from '../game/Game'
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+
+
 
 const Home: FC = () => {
 
-	const [isGame, setIsGame] = useState(false)
+	const {toggleBurger} = useActions()
+	const {isGame} = useTypedSelector(state => state.game)
+	console.log(isGame)
 
   return (
     <div className={styles.home}>
 				{isGame ? <Game/> : 
 				<div className={styles.button}>
-					<button onClick={() => setIsGame(true)}>GAME</button>
+					<button onClick={() => toggleBurger({isGame})}>GAME</button>
 				</div> } 
 		</div>
   )

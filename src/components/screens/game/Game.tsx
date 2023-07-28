@@ -8,8 +8,8 @@ import { gameData } from '@/components/screens/game/game.data';
 const Game: FC = () => {
 	
 	const itemsRef = useRef([])
-	const {mixing, showItem} = useGame(itemsRef.current)
-
+	const {mixing, showItem, gameplay} = useGame(itemsRef.current)
+	
 	useEffect(() => {
 		itemsRef.current = itemsRef.current.slice(0, gameData.length);
   }, []);
@@ -17,7 +17,7 @@ const Game: FC = () => {
 	return (
 		<>
 			<div className={styles.cube}>
-				{gameData.map(({id, icon, y, x, opacity, rotate}, i) => <button disabled={false} key={i} ref={el => itemsRef.current[i] = el} onClick={() => showItem(`${i}`, id)} className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}} ><span className={`${icon}`} style={{opacity: `${opacity}`}}></span></button>)}
+				{gameData.map(({id, icon, y, x, opacity, rotate}, i) => <button  key={i} ref={el => itemsRef.current[i] = el} onClick={() => showItem(`${i}`, id)} className={styles.gameItem} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}} ><span className={`${icon}`} style={{opacity: `${opacity}`}}></span></button>)}
 			</div>
 			<button onClick={() => mixing()}>mixing</button>
 		</>

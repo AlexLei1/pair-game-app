@@ -6,4 +6,4 @@ export const store = configureStore({
 	devTools: true,
 })
 
-export type TypeRootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>
