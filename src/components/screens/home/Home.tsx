@@ -7,10 +7,9 @@ import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 
 const Home: FC = () => {
-
 	const {toggleBurger} = useActions()
 	const {isGame} = useTypedSelector(state => state.game)
-	console.log(isGame)
+	console.log('re-render Home')
 
   return (
     <div className={styles.home}>

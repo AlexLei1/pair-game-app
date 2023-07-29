@@ -1,24 +1,36 @@
-import {FC, useRef} from 'react'
+import React,{FC, useRef} from 'react'
 import styles from './GameItem.module.scss'
 import cn from 'classnames'
+
+
 export interface IGameItem {
+	id: number
 	icon: string,
 	y: number,
 	x: number
 	opacity: number,
-	rotate: number
+	rotate: number,
+	showItem: React.MouseEventHandler<HTMLButtonElement>
+	index: string,
+	itemsRef
 }
 
-const GameItem:FC<IGameItem> = ({icon, id, y, x}) => {
+const GameItem:FC<IGameItem> = ({id, icon, y, x, opacity, rotate, showItem, index, itemsRef}) => {
 
 	return (
-		<div className={styles.gameItem} onClick={() => game()} style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0)`}}  data-matrix-id={id}><span className={`${icon}`}></span></div>
+		<>
+			<button
+				key={index}
+				ref={el => itemsRef.current[index] = el}
+				className={styles.gameItem} 
+				onClick={() => showItem()} 
+				style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}} 
+				>
+				<span className={`${icon}`} style={{opacity: `${opacity}`}}></span>
+			</button>
+		</>
+		
 	)
 }
 
 export default GameItem
-
-
-//1 - если состояние game = false блокируем взаимодействие с элементом
-//2 - при клике на item он открывается и сохраняет значение в хранилище
-//3 - если состояние game меняется c false на true элемнт блокируется и закрывается 

@@ -4,18 +4,18 @@
 	top: 0;
 	width: 25%;
 	height: 25%;
-	background-color: black;
-	// color: #fff;
+	border: none;
+	background-color: rgb(black, .3);
+	color: #fff;
 	font-size: 40px;
 	cursor: pointer;
-	transition: transform .3s ease-out;
-	// transform: rotateY(0deg);
+	transition: all .3s ease-out;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 
-	> span {
+> span {
 		pointer-events: none;
 		transition: .2s ease-in-out;
 	}

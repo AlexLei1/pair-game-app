@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { IGameItem } from '@/components/ui/gameItem/GameItem';
+import { useActions } from '@/hooks/useActions';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
 
 export interface IGameData extends Array<IGameItem> {}
 
 export const useGame = (arrItems: any) => {
+	console.log('re-render hook')
 	const [gameplay, setGameplay] = useState([])
 	const [arrIdItem, setArrIdItem] = useState([])
 	const [isPosition, setIsPosition] = useState(true)
+	const {toggleBurger} = useActions()
+	const {isGame} = useTypedSelector(state => state.game)
 
 	//? формирует матрицу из массива
 	const getMatrix = (arr) => {
@@ -48,6 +53,7 @@ export const useGame = (arrItems: any) => {
 
 	//? показать элемент
 	const showItem = (index: string, id:number) => {
+		console.log(id)
 		for(let i in arrItems) {
 			if (i === index) {
 				arrItems[i].children[0].style.opacity = 1
@@ -97,14 +103,16 @@ export const useGame = (arrItems: any) => {
 				setArrIdItem([])
 			} else {
 				console.log(false)
-
+				toggleBurger({isGame})
 
 				setArrIdItem([])
 			}
 		}
 		if (gameplay.length === 16){
 			console.log('выйграли')
+			toggleBurger({isGame})
 			setGameplay([])
+			
 		}
 
 	}, [gameplay])
