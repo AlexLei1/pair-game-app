@@ -1,39 +1,39 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
-import { IGameItem } from '@/components/ui/gameItem/GameItem';
+import { useEffect, useState } from 'react';
 import { useActions } from '@/hooks/useActions';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 
-export interface IGameData extends Array<IGameItem> {}
-
-export const useGame = (arrItems: any) => {
+interface IUseGame {
+	arrItems: HTMLButtonElement[] | null[]
+}
+export const useGame = (arrItems: HTMLButtonElement[]) => {
 	console.log('re-render hook')
-	const [gameplay, setGameplay] = useState([])
-	const [arrIdItem, setArrIdItem] = useState([])
-	const [isPosition, setIsPosition] = useState(true)
+	const [gameplay, setGameplay] = useState<number[]>([])
+	const [arrIdItem, setArrIdItem] = useState<number[]>([])
+	const [isPosition, setIsPosition] = useState<boolean>(true)
 	const {toggleBurger} = useActions()
 	const {isGame} = useTypedSelector(state => state.game)
 
 	//? формирует матрицу из массива
-	const getMatrix = (arr) => {
+	const getMatrix = (arr: HTMLButtonElement[]) => {
+
 		const matrix = [[], [], [], []]
 		let y = 0
 		let x = 0
 
-		for(let i in arr) {
+		arr.forEach((item) => {
 			if (x >= 4) {
 				y++
 				x = 0
 			}
-			
-			matrix[y][x] = arr[i]
+			matrix[y][x] = item
 			x++
-		}
+		})
 		
 		return matrix
 	}
 
 	//? задает координаты X & Y ариентируясь на порядок в матрице
-	const setPositionItems = (matrix) => { 
+	const setPositionItems = (matrix: HTMLButtonElement[][]) => { 
 		for(let y = 0; y < matrix.length; y++) {
 			for(let x = 0; x < matrix[y].length; x++) {
 				matrix[y][x].style.transform = `translate3D(${x * 100}%, ${y * 100}%,  0)`;
@@ -43,30 +43,26 @@ export const useGame = (arrItems: any) => {
 	}
 
 	//? рандомно перемешивает массив
-	const shuffleArray = (arr) => {
+	const shuffleArray = (arr: HTMLButtonElement[]) => {
 		return arr 
 			.map(value => ({value, sort: Math.random()}))
 			.sort((a, b) => a.sort - b.sort)
 			.map(({value}) => value)
 	}
 
-
+	console.log(arrItems)
 	//? показать элемент
 	const showItem = (index: string, id:number) => {
-		console.log(id)
-		for(let i in arrItems) {
-			if (i === index) {
-				arrItems[i].children[0].style.opacity = 1
-				arrItems[i].disabled = true
+		arrItems[index].children[0].style.opacity = 1
+		arrItems[index].disabled = true
 
-				setGameplay((arr) => [...arr, id])
-				setArrIdItem((arr) => [...arr, id])
-			} 
-		}
+		setGameplay((arr) => [...arr, id])
+		setArrIdItem((arr) => [...arr, id])
 	}
+
 	//? скрывает все элемнты и дает возможность кликать
 	const hideItems = () => {
-		for(let i in arrItems) {
+		for(let i = 0; i <= 16; i++) {
 			arrItems[i].children[0].style.opacity = 0
 			arrItems[i].disabled = false
 		}
@@ -74,9 +70,9 @@ export const useGame = (arrItems: any) => {
 
 	//? блокирует все элемнты
 	const disabledItems = () => {
-		for(let i in arrItems) {
-			arrItems[i].disabled = true
-		}
+		arrItems.forEach((item) => {
+			item.disabled = true
+		}) 
 	}
 
 	//? процедура перемешивания элемнтов игры 
@@ -84,9 +80,6 @@ export const useGame = (arrItems: any) => {
 		setPositionItems(getMatrix(shuffleArray(arrItems)))
 	}
 
-	// const gameRestart = () => {
-		
-	// }
 
 	useEffect(() => {
 		if((arrIdItem.length === 0) && isPosition) {

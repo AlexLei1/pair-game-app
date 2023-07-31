@@ -1,16 +1,20 @@
-import GameItem, { IGameItem } from '@/components/ui/gameItem/GameItem'
 import { useGame } from '@/hooks/useGame'
-import {FC, useEffect, useRef, useState} from 'react'
+import {FC, useEffect, useRef } from 'react'
 import styles from './Game.module.scss'
 import { gameData } from '@/components/screens/game/game.data';
 
 
+// Array<HTMLButtonElement>
+
 const Game: FC = () => {
 	console.log('re-render Game')
-	const itemsRef = useRef([])
+	const itemsRef = useRef<HTMLButtonElement[] | null[]>([null])
+	console.log(itemsRef)
 	const {mixing, showItem, gameplay} = useGame(itemsRef.current)
+
 	useEffect(() => {
 		itemsRef.current = itemsRef.current.slice(0, gameData.length);
+		console.log(itemsRef)
   }, []);
 
 	return (
