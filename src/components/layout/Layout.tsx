@@ -9,17 +9,9 @@ const Layout: FC<ILayout> = ({children}) => {
 
 	return (
 		<div className={styles.layout}>
-			<header>
-				HEADER
-			</header>
-
 			<div className='container'>
 				{children}
 			</div>
-
-			<footer>
-				FOOTER
-			</footer>
 		</div>
 	)
 }

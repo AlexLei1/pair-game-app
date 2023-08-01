@@ -9,10 +9,9 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 	console.log('re-render hook')
 	const [gameplay, setGameplay] = useState<number[]>([])
 	const [arrIdItem, setArrIdItem] = useState<number[]>([])
-	const [isPosition, setIsPosition] = useState<boolean>(true)
 	const {toggleBurger} = useActions()
 	const {isGame} = useTypedSelector(state => state.game)
-
+	console.log(isGame, !arrIdItem.length)
 	//? формирует матрицу из массива
 	const getMatrix = (arr: HTMLButtonElement[]) => {
 
@@ -50,7 +49,7 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 			.map(({value}) => value)
 	}
 
-	console.log(arrItems)
+
 	//? показать элемент
 	const showItem = (index: string, id:number) => {
 		arrItems[index].children[0].style.opacity = 1
@@ -82,10 +81,12 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 
 
 	useEffect(() => {
-		if((arrIdItem.length === 0) && isPosition) {
+		
+		if((!arrIdItem.length) && isGame) {
+			console.log('go')
 			disabledItems()
-			setIsPosition(false)
-			// setTimeout(() => mixing(), 1000)
+	
+			setTimeout(() => mixing(), 1000)
 			setTimeout(() => hideItems(), 2000)
 		} else if ((arrIdItem.length !== 0) && gameplay.length % 2 === 0) {
 
@@ -95,7 +96,7 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 
 				setArrIdItem([])
 			} else {
-				console.log(false)
+				console.log(false, 'вы проиграли')
 				toggleBurger({isGame})
 
 				setArrIdItem([])
