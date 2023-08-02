@@ -1,7 +1,13 @@
 1. добавить светлячков + сили и фон леса 
 2. все проверить и сохранить в git
-3. 
-4. 
+3. добавить в глобалное состояние gameItem и убрать itemsRef
+4. переписать useGame под stateGameData
+	4.1 создаем dataItem.slice.ts
+	4.2 добавляем в initialState массив gameData
+	4.3 toggleDataItemsOpacity & toggleDataItemOpacity - изменяем видимость элементов (0 - 1)
+	4.4 toggleGameRotate - 
+	4.5 toggleGameY
+	4.6 toggleGameX
 5. 
 6. 
 7.

@@ -9,7 +9,7 @@ export const gameSlice = createSlice({
 	name: 'game',
 	initialState,
 	reducers: {
-		toggleBurger: (state, {payload: isGame}: PayloadAction<IGame>) => {
+		toggleGame: (state, {payload: isGame}: PayloadAction<IGame>) => {
 			if (state.isGame === true) {
 				state.isGame = false
 			} else state.isGame = true

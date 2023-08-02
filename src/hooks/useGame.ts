@@ -9,7 +9,7 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 	console.log('re-render hook')
 	const [gameplay, setGameplay] = useState<number[]>([])
 	const [arrIdItem, setArrIdItem] = useState<number[]>([])
-	const {toggleBurger} = useActions()
+	const {toggleGame} = useActions()
 	const {isGame} = useTypedSelector(state => state.game)
 	console.log(isGame, !arrIdItem.length)
 	//? формирует матрицу из массива
@@ -97,14 +97,14 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 				setArrIdItem([])
 			} else {
 				console.log(false, 'вы проиграли')
-				toggleBurger({isGame})
+				toggleGame({isGame})
 
 				setArrIdItem([])
 			}
 		}
 		if (gameplay.length === 16){
 			console.log('выйграли')
-			toggleBurger({isGame})
+			toggleGame({isGame})
 			setGameplay([])
 			
 		}

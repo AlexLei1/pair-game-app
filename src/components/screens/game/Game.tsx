@@ -8,16 +8,12 @@ import cn from 'classnames';
 
 
 const Game: FC = () => {
-	const {isGame} = useTypedSelector(state => state.game)
-
 	console.log('re-render Game')
 	const itemsRef = useRef<HTMLButtonElement[] | null[]>([null])
 	const {mixing, showItem, gameplay} = useGame(itemsRef.current)
 
 	useEffect(() => {
-		if (isGame){
-			itemsRef.current = itemsRef.current.slice(0, gameData.length);
-		}
+		itemsRef.current = itemsRef.current.slice(0, gameData.length);
 	}, []);
 
 	return (
@@ -27,8 +23,8 @@ const Game: FC = () => {
 				<button  
 					key={index} 
 					ref={el => itemsRef.current[index] = el} 
-					onClick={() => {isGame? showItem(`${index}`, id) : null}} 
-					className={!isGame ? styles.gameItem2 : styles.gameItem}
+					onClick={() => showItem(`${index}`, id) } 
+					className={styles.gameItem}
 					style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}}
 					>
 						<span 
@@ -37,7 +33,6 @@ const Game: FC = () => {
 				</button>
 			))}
 		{/* <button onClick={() => mixing()}>mixing</button> */}
-		
 		</div>
 		</>
 		
