@@ -87,7 +87,7 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 			disabledItems()
 	
 			setTimeout(() => mixing(), 1000)
-			setTimeout(() => hideItems(), 2000)
+			setTimeout(() => hideItems(), 5000)
 		} else if ((arrIdItem.length !== 0) && gameplay.length % 2 === 0) {
 
 			if (arrIdItem[0] === arrIdItem[1]) {
@@ -98,7 +98,6 @@ export const useGame = (arrItems: HTMLButtonElement[]) => {
 			} else {
 				console.log(false, 'вы проиграли')
 				toggleGame({isGame})
-
 				setArrIdItem([])
 			}
 		}

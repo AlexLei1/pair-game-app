@@ -19,7 +19,7 @@ const Home: FC = () => {
 			{isGame 
 			? <Game/> 
 			:	<div className={styles.button}>
-					<button onClick={() => toggleGame({isGame})}>GAME</button>
+					<button onClick={() => toggleGame({isGame})}><span>GAME</span></button>
 				</div>}
 		</>
  

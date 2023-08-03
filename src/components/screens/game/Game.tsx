@@ -18,22 +18,22 @@ const Game: FC = () => {
 
 	return (
 		<>
-		<div className={styles.game}>
-			{gameData.map(({id, icon, y, x, opacity, rotate}, index) => (
-				<button  
-					key={index} 
-					ref={el => itemsRef.current[index] = el} 
-					onClick={() => showItem(`${index}`, id) } 
-					className={styles.gameItem}
-					style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}}
-					>
-						<span 
-							className={`${icon}`} 
-							style={{opacity: `${opacity}`}}></span>
-				</button>
-			))}
-		{/* <button onClick={() => mixing()}>mixing</button> */}
-		</div>
+			<div className={styles.game}>
+				{gameData.map(({id, icon, y, x, opacity, rotate}, index) => (
+					<button  
+						key={index} 
+						ref={el => itemsRef.current[index] = el}
+						className={styles.btnGameItem}
+						onClick={() => showItem(`${index}`, id) } 
+						style={{transform:`translate3D(${x * 100}%, ${y * 100}%,  0) rotateY(${rotate}deg)`}}
+						>
+							<span 
+								className={`${icon}`} 
+								style={{opacity: `${opacity}`}}></span>
+					</button>
+				))}
+			</div>
+			<button className={styles.btnMixing} onClick={() => mixing()}><span>mixing</span></button>
 		</>
 		
 	)
