@@ -1,4 +1,4 @@
-<div align='center'><img src='public/employee-180x180.svg'/></div>
+<div align='center'><img src='public/game.svg'/></div>
 
 <h2>About the project</h2>
 
