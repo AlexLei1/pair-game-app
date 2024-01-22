@@ -18,7 +18,7 @@ On a square field of face-down cards, the player must find pairs of identical ca
 <h3 align='center'>Game</h3>
 
 <div align='center'>
-	<img src='https://sun9-69.userapi.com/impg/i24GRNoq2iOvvqnh-NqfOOR2Bxeqo-SoBg7Y7A/RP0gnjvDAXg.jpg?size=320x213&quality=95&crop=198,0,2163,1440&sign=19c19ea381e695adc05b45d50ea7fb6c&c_uniq_tag=gkP1B0ENLkMPEmE2xMjtcvubH3vSoPkDiyKU6Ey5x9w&type=album'/>
+	<img src='https://sun9-69.userapi.com/impg/i24GRNoq2iOvvqnh-NqfOOR2Bxeqo-SoBg7Y7A/RP0gnjvDAXg.jpg?size=2560x1440&quality=95&sign=4b8ec8aa73b93f68baa7216747d2d321&type=album'/>
 </div>
 
 <br>
